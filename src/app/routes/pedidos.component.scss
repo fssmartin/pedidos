@@ -1,0 +1,166 @@
+
+
+#map {
+    height: 100%; width: 100%; 
+    @media only screen and (max-width: 768px) {    
+        min-height: 350px;        
+    }     
+}
+
+
+$espera-color: #6c757d;
+$horno-color: #dc3545;
+$preparacion-color: #ffc107;
+$ruta-color: rgba(0, 0, 0, 0.6);
+$ruta-color2: rgba(153, 153, 153, 0.47);
+
+$entregado-color: #28a745;
+
+
+.espera{
+    border:1px solid $espera-color; 
+    .info{ 
+        span{color:$espera-color};
+    }
+}
+.horno{
+    border:1px solid $horno-color;
+    .info{    
+        span{color:$ruta-color};
+    }
+}
+.preparacion{
+    border:1px solid $preparacion-color;
+    .info{        
+        span{color:$ruta-color};
+    }
+}
+.ruta{ 
+    border:2px solid $ruta-color2;
+    .info{         
+        border-bottom:1px solid $ruta-color2; 
+        color:$ruta-color2;
+    }
+    .subdatos{
+        label{color:$ruta-color;}
+    }
+}
+.entregado{
+    border:1px solid $entregado-color;
+    .info{ 
+        span {color:$ruta-color};
+    }
+}
+    
+.wrap{
+    border-radius: 0.25rem;
+    padding: 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    &.nopedido{
+        margin-top:40px;
+    }
+
+    .info{ 
+        display: flex;
+        justify-content: left;
+        flex-direction: column;
+        padding:5px 11px 5px 11px;
+        background-color: #E5E8E8;
+        h3{ 
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+            @media only screen and (max-width: 768px) {  
+                align-items: baseline;
+            }                 
+            span{     
+                color: $ruta-color; 
+                text-shadow: 3px 2px 3px rgba(255,255,255,.2);           
+                &.status  {font-weight: bold;font-size: 28px;}
+                &.distance{
+                    font-size: 18px;
+                    span{
+                        font-size: 24px;
+                    }
+                    span + span{
+                        font-size: 18px;
+                        padding-left: 5px;
+                        @media only screen and (max-width: 768px) {  
+                            display: none;  
+                        }                          
+                    }
+                    i{
+                        padding-right: 10px;
+                        font-size: 22px;
+                        opacity: .8;                        
+                    }
+                }   
+                &.pedido{
+                    font-size: 24px;
+                    span{
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+    .datos{
+        padding:0px 0px 0px 20px; 
+        display: flex;
+        justify-content: space-between;
+        min-height: 350px;
+        .subdatos{
+            padding:15px 10px 0px 0px; 
+            & > div{
+                position: relative;
+            }
+            p{
+                font-weight: normal;
+            }
+            label {
+                font-weight: bold; 
+                font-size: 19px;
+                margin-bottom: 10px;
+                padding-top: 5px;
+                border-bottom: 1px solid;
+                width: 65%;
+                @media only screen and (max-width: 768px) {    
+                    width: 75%; 
+                }                   
+                i{
+                    position: absolute;
+                    right: 5px;
+                    top: -15px;
+                    font-size: 54px;
+                    opacity: 0.3;
+                }
+            }
+            ul {    
+                list-style: disc;
+                padding-left: 1.5rem;
+                li{ 
+                    color: $ruta-color;
+                    font-size: 15px;
+                    padding-bottom: 5px;
+                    span{width:80px;display:inline-block}
+                    &::marker {     
+                        font-size:14px;
+                    }                    
+                }
+            } 
+            @media only screen and (max-width: 768px) {    
+                flex-wrap: wrap; 
+                padding:15px 10px 0px 20px;         
+            }                       
+        } 
+        @media only screen and (max-width: 768px) {    
+            flex-wrap: wrap; 
+            padding:0;            
+        }  
+    }
+}
+
+ 

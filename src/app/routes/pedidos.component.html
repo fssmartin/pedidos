@@ -1,0 +1,129 @@
+
+<!-- http://localhost:4200/pedido?id=123456789 -->
+ 
+<ng-container *ngIf="pedido else nopedido"> 
+    <div class="wrap" [ngClass]="{
+        'ruta'        :pedido.estado.status! === 'En ruta',
+        'preparacion' :pedido.estado.status! === 'En preparación',
+        'horno'       :pedido.estado.status! === 'En el horno',
+        'espera'      :pedido.estado.status! === 'En espera',   
+        'entregado'   :pedido.estado.status! === 'Entregado',                        
+    }">
+            <div class="info">
+                <h3>
+                    <span class='status'>{{pedido.estado.status}}</span> 
+                    <span class='distance'><i class="bi bi-shop"></i><span>{{distancePedido }}</span><span>metros de casa</span></span>
+                    <span class='pedido'><span>Pedido:</span>{{idPedido}}</span>
+                </h3>
+            </div>
+            
+            <div class="datos" >
+                <div class="subdatos col-12 col-md-5">
+        
+                    <div>
+                        <label><i class="bi bi-person-vcard"></i>Usuario :</label> 
+                        <ul>
+                            <li>{{usuario.Nombre}}</li>
+                            <li>{{usuario.Correo}}</li>
+                            <li>{{pedido.direccion.Direccion_completa }}</li> 
+                            <!-- <li><span>Latitud    :</span>{{pedido.direccion.Latitud }}</li> 
+                            <li><span>Longitud   :</span>{{pedido.direccion.Longitud }}</li>  -->
+                        </ul>
+                    </div>
+                    <div>
+                        <label><i class="bi bi-cart-check"></i>Tienda :</label> 
+                        <ul>
+                            <li>{{tienda.Nombre}}</li>
+                            <li>{{tienda.Direccion}}</li>
+                            <!-- <li><span>Latitud  :</span>{{tienda.Latitud }}</li> 
+                            <li><span>Longitud :</span>{{tienda.Longitud }}</li>  -->
+                        </ul>
+                    </div>
+                    <!-- <div>
+                        <label>Pedido :</label> 
+                        <ul>
+                            <li class="status">{{pedido.estado.status }}</li> 
+                            <li><span>id  :</span>{{idPedido}}</li> 
+                            <li><span>Direccion  :</span>{{pedido.posicion.Direccion_completa }}</li> 
+                            <li><span>Latitud  :</span>{{pedido.posicion.Latitud }}</li> 
+                            <li><span>Longitud :</span>{{pedido.posicion.Longitud }}</li> 
+                        </ul>
+                    </div> -->
+                    <!-- <div>
+                        <label>Marca :</label> 
+                        <ul>
+                            <li>{{marca.Nombre}}</li>
+                            <li [ngStyle]="{'color': marca.Color1}">{{marca.Color1}}</li>
+                            <li [ngStyle]="{'color': marca.Color2}">{{marca.Color2}}</li>
+                            <li [ngStyle]="{'color': marca.Color3}">{{marca.Color3}}</li>
+                        </ul>
+                    </div> -->
+                </div>
+                <div class="mapa col-12 col-md-7"> 
+                    <!-- <google-map [options]="mapOptions" width="100%">
+                        <ng-container *ngFor="let spot of spots" >
+                            <map-marker #marker="mapMarker" 
+                                        [position]="{ lat: spot.lat, lng: spot.lng }" 
+                                        [label]="{color:'white' , text:spot.lb}"
+                                        [title]="spot.tl"  
+                                        [options]="spot.options"
+                                        [clickable]="true"
+                                        (mapClick)="openInfoWindow(marker)">
+                            </map-marker>
+                            <map-info-window>{{spot.desc}}</map-info-window>
+                        </ng-container>
+                    </google-map> -->
+                    <div id="map"></div>
+                </div>
+            </div>
+    </div>
+
+</ng-container>
+
+<ng-template #nopedido>
+    <div class="wrap nopedido"  >
+
+        
+        <div class="info" *ngIf="nopedidob" else pedido>
+            <h3>
+                <span class='status'>Este pedido no Existe, id: {{idPedido}}</span> 
+            </h3>
+        </div>
+        <div class="info" #pedido *ngIf="!nopedidob">
+            <h3>
+                <span class='status'>CARGANDO PEDIDO: {{idPedido}}</span> 
+            </h3>
+        </div>
+        
+            <div class="datos" >
+                <div class="subdatos col-12 col-md-5">        
+                    <div>
+                        <label><i class="bi bi-person-vcard"></i>Usuario :</label> 
+                        <ul>
+                            <li>Name:</li>
+                            <li>Direccion:</li>  
+                        </ul>
+                    </div>
+                    <div>
+                        <label><i class="bi bi-cart-check"></i>Tienda :</label> 
+                        <ul>
+                            <li>Name:</li>
+                            <li>address:</li> 
+                        </ul>
+                    </div>
+           
+                </div>
+                <div class="mapa col-12 col-md-7"> 
+                    <!-- <google-map [options]="mapOptions" width="100%">
+                        <ng-container *ngFor="let spot of spots" >
+                            <map-marker 
+                                        [position]="{ lat: spot.lat, lng: spot.lng }"  >
+                            </map-marker> 
+                        </ng-container>
+                    </google-map> -->
+                    
+                    <div id="map"></div>
+                </div>
+            </div>
+    </div>
+</ng-template>
