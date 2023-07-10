@@ -1,0 +1,167 @@
+{
+	"data": [
+		{
+			"id": 1,
+			"attributes": {
+				"createdAt": "2023-06-13T08:05:13.887Z",
+				"updatedAt": "2023-06-13T14:24:27.298Z",
+				"publishedAt": "2023-06-13T08:12:41.642Z",
+				"Clave": "12",
+				"DireccionPedido": {
+					"id": 10,
+					"Latitud": 40.45216182345805,
+					"Longitud": -3.685597366591511,
+					"Direccion_completa": "Plaza de los Sagrados Corazones, Madrid"
+				},
+				"EstadoPedido": {
+					"id": 1,
+					"status": "En ruta"
+				},
+				"PosicionPedido": {
+					"id": 11,
+					"Latitud": 40.45448772063116,
+					"Longitud": -3.683374966733671,
+					"Direccion_completa": null
+				},
+				"tienda": {
+					"data": {
+						"id": 1,
+						"attributes": {
+							"Nombre": "Tienda 1. Cochabamba",
+							"Direccion": "C\\ Cochabamba 7, Madrid",
+							"createdAt": "2023-06-12T15:09:04.024Z",
+							"updatedAt": "2023-06-15T11:30:28.187Z",
+							"publishedAt": "2023-06-13T07:15:48.272Z",
+							"Latitud": 40.455999744654626,
+							"Longitud": -3.681373093268623,
+							"Clave": "123",
+							"marca": {
+								"data": {
+									"id": 2,
+									"attributes": {
+										"createdAt": "2023-06-12T15:10:49.289Z",
+										"updatedAt": "2023-06-15T11:39:09.628Z",
+										"publishedAt": "2023-06-13T07:32:50.934Z",
+										"Nombre": "Softtek",
+										"Color1": "#CF3643",
+										"Color2": "#FF5733",
+										"Color3": "#F39C12",
+										"Logo": {
+											"data": [
+												{
+													"id": 2,
+													"attributes": {
+														"name": "logo_softtek.gif",
+														"alternativeText": null,
+														"caption": null,
+														"width": 2000,
+														"height": 1111,
+														"formats": {
+															"thumbnail": {
+																"name": "thumbnail_logo_softtek.gif",
+																"hash": "thumbnail_logo_softtek_819704fbd1",
+																"ext": ".gif",
+																"mime": "image/gif",
+																"path": null,
+																"width": 245,
+																"height": 136,
+																"size": 4.85,
+																"url": "https://res.cloudinary.com/dfzivucmg/image/upload/v1686818772/thumbnail_logo_softtek_819704fbd1.gif",
+																"provider_metadata": {
+																	"public_id": "thumbnail_logo_softtek_819704fbd1",
+																	"resource_type": "image"
+																}
+															},
+															"large": {
+																"name": "large_logo_softtek.gif",
+																"hash": "large_logo_softtek_819704fbd1",
+																"ext": ".gif",
+																"mime": "image/gif",
+																"path": null,
+																"width": 1000,
+																"height": 556,
+																"size": 40.96,
+																"url": "https://res.cloudinary.com/dfzivucmg/image/upload/v1686818773/large_logo_softtek_819704fbd1.gif",
+																"provider_metadata": {
+																	"public_id": "large_logo_softtek_819704fbd1",
+																	"resource_type": "image"
+																}
+															},
+															"small": {
+																"name": "small_logo_softtek.gif",
+																"hash": "small_logo_softtek_819704fbd1",
+																"ext": ".gif",
+																"mime": "image/gif",
+																"path": null,
+																"width": 500,
+																"height": 278,
+																"size": 12.69,
+																"url": "https://res.cloudinary.com/dfzivucmg/image/upload/v1686818773/small_logo_softtek_819704fbd1.gif",
+																"provider_metadata": {
+																	"public_id": "small_logo_softtek_819704fbd1",
+																	"resource_type": "image"
+																}
+															},
+															"medium": {
+																"name": "medium_logo_softtek.gif",
+																"hash": "medium_logo_softtek_819704fbd1",
+																"ext": ".gif",
+																"mime": "image/gif",
+																"path": null,
+																"width": 750,
+																"height": 417,
+																"size": 23.81,
+																"url": "https://res.cloudinary.com/dfzivucmg/image/upload/v1686818773/medium_logo_softtek_819704fbd1.gif",
+																"provider_metadata": {
+																	"public_id": "medium_logo_softtek_819704fbd1",
+																	"resource_type": "image"
+																}
+															}
+														},
+														"hash": "logo_softtek_819704fbd1",
+														"ext": ".gif",
+														"mime": "image/gif",
+														"size": 135.55,
+														"url": "https://res.cloudinary.com/dfzivucmg/image/upload/v1686818773/logo_softtek_819704fbd1.gif",
+														"previewUrl": null,
+														"provider": "cloudinary",
+														"provider_metadata": {
+															"public_id": "logo_softtek_819704fbd1",
+															"resource_type": "image"
+														},
+														"createdAt": "2023-06-12T15:10:44.294Z",
+														"updatedAt": "2023-06-15T08:46:13.813Z"
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"usuario": {
+					"data": {
+						"id": 1,
+						"attributes": {
+							"Nombre": "Pepito",
+							"Correo": "a@a.com",
+							"createdAt": "2023-06-13T07:59:00.167Z",
+							"updatedAt": "2023-06-13T07:59:01.705Z",
+							"publishedAt": "2023-06-13T07:59:01.702Z"
+						}
+					}
+				}
+			}
+		}
+	],
+	"meta": {
+		"pagination": {
+			"page": 1,
+			"pageSize": 25,
+			"pageCount": 1,
+			"total": 1
+		}
+	}
+}
