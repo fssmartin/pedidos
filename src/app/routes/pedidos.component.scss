@@ -84,8 +84,10 @@ $entregado-color: #28a745;
                     font-size: 18px;
                     span{
                         font-size: 24px;
+                        font-weight:700;
                     }
-                    span + span{
+                    span + span{                        
+                        font-weight:400;
                         font-size: 18px;
                         padding-left: 5px;
                         @media only screen and (max-width: 768px) {  
@@ -100,8 +102,10 @@ $entregado-color: #28a745;
                 }   
                 &.pedido{
                     font-size: 24px;
+                    font-weight:700;
                     span{
                         font-size: 18px;
+                        font-weight:400;
                     }
                 }
             }

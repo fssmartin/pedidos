@@ -5,6 +5,8 @@
 
 html, body {
     height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight:400;
 }
 
 
@@ -15,3 +17,4 @@ html, body {
 .leaflet-popup-content{
     margin: 5px 24px 3px 10px;
 }
+
