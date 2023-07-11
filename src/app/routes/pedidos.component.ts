@@ -7,7 +7,7 @@ import { ProjectService } from '../services/project.service';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { SpinnerService } from '../services/spinner.service';
 
-import { Map, marker, tileLayer } from 'leaflet';
+import { Map, icon, marker, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'app-pedidos',
@@ -173,9 +173,14 @@ export class PedidosComponent implements OnInit, OnDestroy {
                             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                           }).addTo(map);
                       
-                          marker([this.pedido.direccion.Latitud, this.pedido.direccion.Longitud]).addTo(map).bindPopup("CASA");
-                          marker([this.pedido.posicion.Latitud, this.pedido.posicion.Longitud]).addTo(map).bindPopup("Pedido a "+this.distancePedido+"m").openPopup();
-                          marker([this.tienda.Latitud, this.tienda.Longitud]).addTo(map).bindPopup("TIENDA, "+this.tienda.Nombre);
+                          let homeIcon  = icon({ iconUrl: 'assets/img/home.png', iconSize: [65, 70] });
+                          let storeIcon = icon({ iconUrl: 'assets/img/store.png', iconSize: [65, 70] });
+
+                        marker([this.pedido.direccion.Latitud, this.pedido.direccion.Longitud], {icon: homeIcon} ).addTo(map).bindPopup("CASA");
+                        marker([this.pedido.posicion.Latitud, this.pedido.posicion.Longitud]).addTo(map).bindPopup("Pedido a "+this.distancePedido+"m").openPopup();
+                        marker([this.tienda.Latitud, this.tienda.Longitud], {icon: storeIcon}).addTo(map).bindPopup("TIENDA, "+this.tienda.Nombre);
+
+
 
                       }, 500);
 
