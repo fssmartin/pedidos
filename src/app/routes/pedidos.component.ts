@@ -7,7 +7,9 @@ import { ProjectService } from '../services/project.service';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { SpinnerService } from '../services/spinner.service';
 
-import { Map, icon, marker, tileLayer } from 'leaflet';
+import {  Control, Map,  Routing,  icon, latLng, marker, tileLayer } from 'leaflet';
+import 'leaflet-routing-machine';
+
 
 @Component({
   selector: 'app-pedidos',
@@ -107,10 +109,9 @@ export class PedidosComponent implements OnInit, OnDestroy {
                         };   
                         
                         this.tienda  = info.pedido.tienda.data.attributes;                      
-                        this.marca   = info.pedido.tienda.data.attributes.marca.data.attributes;                  
-                        //this.myLatLng = { lat: this.pedido.posicion.Latitud, lng: this.pedido.posicion.Longitud };      
-        
-                        
+                        this.marca   = info.pedido.tienda.data.attributes.marca.data.attributes;  
+
+                        // this.myLatLng = { lat: this.pedido.posicion.Latitud, lng: this.pedido.posicion.Longitud }; 
                         // this.mapOptions = {
                         //   center: this.myLatLng,
                         //   zoom: 15,
@@ -159,32 +160,77 @@ export class PedidosComponent implements OnInit, OnDestroy {
                         // ]
 
                       }  
+                      var asd = [
 
+                        {
+                            'latitude':this.pedido.direccion.Latitud, 
+                            'longitude':this.pedido.direccion.Longitud ,
+                            'title': 'Chennai',
+                            'description': '', 
+                        }
+                       
+                      ];
                       
                       setTimeout(() => {
                         
                           let sumaLat = (this.pedido.direccion.Latitud +  this.tienda.Latitud) / 2;
                           let sumaLong = (this.pedido.direccion.Longitud +  this.tienda.Longitud) / 2;
 
-                          const map = new Map('map').setView([sumaLat, sumaLong], 14);  
+                          const map = new Map('map').setView([sumaLat, sumaLong],16);                            
     
                           tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {
-                            maxZoom: 16,
-                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            maxZoom: 15,
                           }).addTo(map);
                       
-                          let homeIcon  = icon({ iconUrl: 'assets/img/home.png', iconSize: [65, 70] });
-                          let storeIcon = icon({ iconUrl: 'assets/img/store.png', iconSize: [65, 70] });
+                          let homeIcon  = icon({ 
+                              iconUrl: 'assets/img/home.png', 
+                              iconSize: [65, 70], 
+                              popupAnchor: [0, 0],                           
+                          });
 
-                        marker([this.pedido.direccion.Latitud, this.pedido.direccion.Longitud], {icon: homeIcon} ).addTo(map).bindPopup("CASA");
-                        marker([this.pedido.posicion.Latitud, this.pedido.posicion.Longitud]).addTo(map).bindPopup("Pedido a "+this.distancePedido+"m").openPopup();
-                        marker([this.tienda.Latitud, this.tienda.Longitud], {icon: storeIcon}).addTo(map).bindPopup("TIENDA, "+this.tienda.Nombre);
+                          let storeIcon = icon({ 
+                              iconUrl: 'assets/img/store.png', 
+                              iconSize: [65, 70], 
+                              popupAnchor :[0, 0],                                    
+                          });
 
+                          marker(
+                            [this.pedido.direccion.Latitud, this.pedido.direccion.Longitud], 
+                            {icon: homeIcon})
+                            .addTo(map)
+                            .bindTooltip("CASA")                            
+                            .bindPopup(this.pedido.direccion.Direccion_completa);
+                          marker(
+                            [this.pedido.posicion.Latitud, this.pedido.posicion.Longitud])
+                            .addTo(map)
+                            .bindTooltip("Pedido a "+this.distancePedido+"m")  
+                            .bindPopup("Pedido a "+this.distancePedido+"m").openPopup();
+                          marker(
+                            [this.tienda.Latitud, this.tienda.Longitud]
+                            ,{icon: storeIcon})
+                            .addTo(map)
+                            .bindTooltip("TIENDA")                            
+                            .bindPopup("TIENDA, "+this.tienda.Nombre);
+                            
+//CON RUTAS
+                          // var routeControl = Routing.control({          
+                          //     showAlternatives: false,
+                          //     fitSelectedRoutes: false,
+                          //     show: false,
+                          //     useZoomParameter: false,
+                          //     routeWhileDragging: false,
+                          //     autoRoute : true,
+                          //     addWaypoints : false, 
+                          //     waypoints: [
+                          //         latLng(this.pedido.direccion.Latitud, this.pedido.direccion.Longitud), 
+                          //         latLng(this.pedido.posicion.Latitud, this.pedido.posicion.Longitud), 
+                          //         latLng(this.tienda.Latitud, this.tienda.Longitud) 
+                          //     ],
 
-
+                          // }).addTo(map);
+ 
+                          
                       }, 500);
-
-
 
                     }, 
                     error => {
@@ -206,19 +252,19 @@ export class PedidosComponent implements OnInit, OnDestroy {
                         //     desc:''
                         //   }
                         // ]     
+
                         this.nopedidob = true;                   
                         this.spinerSvc.hide('error api'); 
+
                         setTimeout(() => {
                         
-                          const map = new Map('map').setView([40.41684517, -3.68375659], 14);  
-    
-                          tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {
-                            maxZoom: 16,
-                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                          }).addTo(map);
+                            const map = new Map('map').setView([40.41684517, -3.68375659], 14);  
+      
+                            tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {
+                                maxZoom: 16,
+                            }).addTo(map);
                       
-                      }, 500);
-
+                        }, 500);
                         
                     }
                 );   
@@ -227,7 +273,6 @@ export class PedidosComponent implements OnInit, OnDestroy {
 
             this.nopedidob = true;
           }   
-
         } 
       );
   }
@@ -245,3 +290,5 @@ export class PedidosComponent implements OnInit, OnDestroy {
     this.destroy$.complete(); 
   }
 }
+
+ 
