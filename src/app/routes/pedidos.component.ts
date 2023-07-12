@@ -189,9 +189,15 @@ export class PedidosComponent implements OnInit, OnDestroy {
                           });
 
                           let storeIcon = icon({ 
-                              iconUrl: 'assets/img/store.png', 
-                              iconSize: [65, 70], 
-                              popupAnchor :[0, 0],                                    
+                            iconUrl: 'assets/img/store.png', 
+                            iconSize: [65, 70], 
+                            popupAnchor :[0, 0],                                    
+                          });
+    
+                          let pedidoIcon = icon({ 
+                            iconUrl: 'assets/img/blue-dot2.png', 
+                            iconSize: [22, 35], 
+                            popupAnchor :[0, -10],                                    
                           });
 
                           marker(
@@ -201,7 +207,8 @@ export class PedidosComponent implements OnInit, OnDestroy {
                             .bindTooltip("CASA")                            
                             .bindPopup(this.pedido.direccion.Direccion_completa);
                           marker(
-                            [this.pedido.posicion.Latitud, this.pedido.posicion.Longitud])
+                            [this.pedido.posicion.Latitud, this.pedido.posicion.Longitud],
+                            {icon: pedidoIcon})
                             .addTo(map)
                             .bindTooltip("Pedido a "+this.distancePedido+"m")  
                             .bindPopup("Pedido a "+this.distancePedido+"m").openPopup();
