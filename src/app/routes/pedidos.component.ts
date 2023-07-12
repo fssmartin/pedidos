@@ -160,21 +160,15 @@ export class PedidosComponent implements OnInit, OnDestroy {
                         // ]
 
                       }  
-                      var asd = [
-
-                        {
-                            'latitude':this.pedido.direccion.Latitud, 
-                            'longitude':this.pedido.direccion.Longitud ,
-                            'title': 'Chennai',
-                            'description': '', 
-                        }
-                       
-                      ];
-                      
+             
                       setTimeout(() => {
                         
-                          let sumaLat = (this.pedido.direccion.Latitud +  this.tienda.Latitud) / 2;
-                          let sumaLong = (this.pedido.direccion.Longitud +  this.tienda.Longitud) / 2;
+                          // let sumaLat = (this.pedido.direccion.Latitud +  this.tienda.Latitud) / 2;
+                          // let sumaLong = (this.pedido.direccion.Longitud +  this.tienda.Longitud) / 2;
+
+                          let sumaLat = (this.pedido.direccion.Latitud +  this.pedido.posicion.Latitud) / 2;
+                          let sumaLong = (this.pedido.direccion.Longitud +  this.pedido.posicion.Longitud) / 2;
+
 
                           const map = new Map('map').setView([sumaLat, sumaLong],16);                            
     
@@ -195,8 +189,9 @@ export class PedidosComponent implements OnInit, OnDestroy {
                           });
     
                           let pedidoIcon = icon({ 
-                            iconUrl: 'assets/img/blue-dot2.png', 
-                            iconSize: [22, 35], 
+                            iconUrl: 'assets/img/blue-dot.png', 
+//                            iconSize: [65, 65], 
+                            iconSize: [35, 35], 
                             popupAnchor :[0, -10],                                    
                           });
 
