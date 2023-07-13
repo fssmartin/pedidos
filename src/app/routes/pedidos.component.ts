@@ -208,13 +208,14 @@ export class PedidosComponent implements OnInit, OnDestroy {
                             .bindTooltip("Pedido a "+this.distancePedido+"m")  
                             .bindPopup("Pedido a "+this.distancePedido+"m").openPopup();
                           marker(
-                            [this.tienda.Latitud, this.tienda.Longitud]
-                            ,{icon: storeIcon})
+                            [this.tienda.Latitud, this.tienda.Longitud],
+                            {icon: storeIcon})
                             .addTo(map)
                             .bindTooltip("TIENDA")                            
                             .bindPopup("TIENDA, "+this.tienda.Nombre);
                             
-//CON RUTAS
+//CON RUTAS comentar los markers
+
                           // var routeControl = Routing.control({          
                           //     showAlternatives: false,
                           //     fitSelectedRoutes: false,
@@ -277,14 +278,6 @@ export class PedidosComponent implements OnInit, OnDestroy {
           }   
         } 
       );
-  }
- 
-  selectMarker(spot: { id: number; lat: number; lng: number }) {
-    alert(`hey! the spot with ID ${spot.id} was seleted !`);
-  }
-  
-  openInfoWindow(marker: MapMarker) {
-    if (this.infoWindow != undefined) this.infoWindow.open(marker);
   }
 
   ngOnDestroy(): void { 
