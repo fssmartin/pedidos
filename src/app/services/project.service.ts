@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; 
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'; 
 import { Global } from './global';
 import { Observable, Subject, catchError, map, of, switchMap, tap, throwError } from 'rxjs';  
 import { Infopedido, Marca, Tienda, Usuario } from '../models/pedido.interface';
@@ -20,24 +20,39 @@ export class ProjectService{
 		private _http: HttpClient){
 
 			this.urlApi = Global.url;
-			this.urlApi2 = Global.url2;
+			this.urlApi2 = Global.urlpedido;
 			this.urlToken = Global.token;
 	}
 
+	getToken$():Observable<any> {  
+
+		const myurlToken = 'auth/local',
+			  body = {
+				'identifier': 'test@test.com',
+				'password': 'test123'
+			  };
+
+		return this._http.post<any>(this.urlApi + myurlToken , body, {}).pipe(			
+			tap( (token:any) => {  
+				Global.token = 'Bearer '+token.jwt;
+			}),
+		)
+	}
 
 	getPedido$(id:number):Observable<any> {  
 
 		const httpOptions = {
-			headers: new HttpHeaders({
-			  'Authorization': this.urlToken
-			})
-		};
+					headers: new HttpHeaders({
+						'Authorization': Global.token
+					})
+			},
+			myUrl = this.urlApi + "pedidos/"; 
 		 
-		return this._http.get(this.urlApi + id + this.urlApi2 , httpOptions).pipe(
+		return this._http.get(myUrl + id + this.urlApi2 , httpOptions).pipe(
 			
 			tap( (pedido:any) => {  
 				this.obsMarca$.next(pedido.data.attributes.tienda.data.attributes.marca.data.attributes);
-		   }),
+		    }),
 
 			map( (data:any) => {
 				return { pedido:data.data.attributes}  				 
@@ -48,19 +63,11 @@ export class ProjectService{
 			// )
 
 			catchError(err => {
-				console.log('Handling error locally and rethrowing it...', err);
+				console.log(err.error.error);
 				return throwError(err);
 			})			
 		)
-
-		// return this._http.get("../../assets/data/pedido.json").pipe(
-		// 	tap( (pedido:any) => {  
-		// 		this.obsMarca$.next(pedido.data[0].attributes.tienda.data.attributes.marca.data.attributes);
-		//    }),
-		// 	map( (data:any) => {
-		// 		return { pedido:data.data[0].attributes}  				 
-		// 	}),
-		// )
+ 
 
 	 
 	}

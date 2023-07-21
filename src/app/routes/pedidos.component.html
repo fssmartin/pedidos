@@ -81,49 +81,76 @@
 </ng-container>
 
 <ng-template #nopedido>
+
     <div class="wrap nopedido"  >
 
-        
-        <div class="info" *ngIf="nopedidob" else pedido>
-            <h3>
-                <span class='status'>Este pedido no Existe, id: {{idPedido}}</span> 
-            </h3>
-        </div>
-        <div class="info" #pedido *ngIf="!nopedidob">
-            <h3>
-                <span class='status'>CARGANDO PEDIDO: {{idPedido}}</span> 
-            </h3>
-        </div>
-        
-            <div class="datos" >
-                <div class="subdatos col-12 col-md-5">        
-                    <div>
-                        <label><i class="bi bi-person-vcard"></i>Usuario :</label> 
-                        <ul>
-                            <li>Name:</li>
-                            <li>Direccion:</li>  
-                        </ul>
-                    </div>
-                    <div>
-                        <label><i class="bi bi-cart-check"></i>Tienda :</label> 
-                        <ul>
-                            <li>Name:</li>
-                            <li>address:</li> 
-                        </ul>
-                    </div>
-           
-                </div>
-                <div class="mapa col-12 col-md-7"> 
-                    <!-- <google-map [options]="mapOptions" width="100%">
-                        <ng-container *ngFor="let spot of spots" >
-                            <map-marker 
-                                        [position]="{ lat: spot.lat, lng: spot.lng }"  >
-                            </map-marker> 
-                        </ng-container>
-                    </google-map> -->
-                    
-                    <div id="map"></div>
-                </div>
+        <ng-container *ngIf="ErrorAuth;else second">
+            <div class="info">
+                <h3>
+                    <span class='status'>Credenciales invalidas para el pedido, {{idPedido}}</span> 
+                </h3>
             </div>
+        </ng-container>
+        <ng-template #second>
+            <ng-container *ngIf="ErrorLoad;else third">
+                <div class="info" *ngIf="nopedidob " else pedido>
+                    <h3>
+                        <span class='status'>Cargando autorización, id: {{idPedido}}</span> 
+                    </h3>
+                </div>
+            </ng-container>
+        </ng-template>
+        <ng-template #third>
+            <ng-container *ngIf="nopedidob;else fourth">
+                <div class="info" *ngIf="nopedidob " else pedido>
+                    <h3>
+                        <span class='status'>Este pedido no Existe, id: {{idPedido}}</span> 
+                    </h3>
+                </div>
+            </ng-container>
+        </ng-template>
+        <ng-template #fourth>
+            <div class="info">
+                <h3>
+                    <span class='status'>CARGANDO PEDIDO: {{idPedido}}</span> 
+                </h3>
+            </div>
+        </ng-template>
+
+
+
+        
+        <div class="datos" >
+            <div class="subdatos col-12 col-md-5">        
+                <div>
+                    <label><i class="bi bi-person-vcard"></i>Usuario :</label> 
+                    <ul>
+                        <li>Nombre:</li>
+                        <li>Direccion:</li>  
+                    </ul>
+                </div>
+                <div>
+                    <label><i class="bi bi-cart-check"></i>Tienda :</label> 
+                    <ul>
+                        <li>Nombre:</li>
+                        <li>Direccion:</li> 
+                    </ul>
+                </div>
+        
+            </div>
+            <div class="mapa col-12 col-md-7"> 
+                
+                <!-- <google-map [options]="mapOptions" width="100%">
+                    <ng-container *ngFor="let spot of spots" >
+                        <map-marker 
+                                    [position]="{ lat: spot.lat, lng: spot.lng }"  >
+                        </map-marker> 
+                    </ng-container>
+                </google-map> -->                 
+
+                <div id="map"></div>
+
+            </div>
+        </div>
     </div>
 </ng-template>

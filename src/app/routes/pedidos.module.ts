@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { PedidosRoutingModule } from './pedidos-routing.module'; 
 
 import { MapaComponent } from './mapa/mapa.component';
-import { EmptyComponent } from './empty/empty.component';
+// import { EmptyComponent } from './empty/empty.component';
 import { PedidosComponent } from './pedidos.component';
 import { GoogleMapsModule} from '@angular/google-maps'
 
@@ -14,7 +14,7 @@ import { GoogleMapsModule} from '@angular/google-maps'
 @NgModule({
   declarations: [
     MapaComponent,
-    EmptyComponent,
+    // EmptyComponent,
     PedidosComponent
   ],
   imports: [
